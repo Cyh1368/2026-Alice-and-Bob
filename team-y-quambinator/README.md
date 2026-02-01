@@ -1,0 +1,26 @@
+# Classical RS Error Correction
+In classical RS error correction, we encode a message $m=\begin{bmatrix} m_0 & m_1 & m_2 & m_3 \end{bmatrix}$ into a function $f(x)=m_0 x^0 + m_1 x^1 + m_2 x^2 + m_3 x^3$. We then sample redundant points on the function so that even when some function values, which are passed as the code, are lost, the function, and hence the message bits, could still be recovered.
+
+## Finite Galois Field
+We apply the arithmetic logic of $GF(2^m)$ to extract the polynomial from our input message.
+For example, $GF(8)$ is a field with elements $$\{0,1,2,3,4,5,6,7\}$$ each representing a polynomial of degree $\text{deg}\leq 2$ and operations similar to polynomials with $f(x)=m_0 x^0 + m_1 x^1 + m_2 x^2 + m_3 x^3 $.
+
+For example, $3+3$ in $GF(8)$ should be interpreted as the addition of polynomials, $$(x+1)+(x+1)=(1+1)x+(1+1)=0x+0=0.$$ Multiplication works similarly. The identity $$x^3=x+1$$ ensures that this forms a field under multiplication, where the resulting polynomial may have a degree larger than 2. 
+
+## Generators
+
+$2$ is a primitive element which, when self-multiplied, genereates every non-zero element of the field. We use this to generate $x^1$ and then calculate the other powers, which are combined into the symmtrical generator $G_{sym}$. In the case of the $[[21,12,4]]$ code, which we should use implicitly in this README,
+$$ 
+G_{sym} = \begin{bmatrix}
+1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+1 & 2 & 4 & 3 & 6 & 7 & 5 \\
+1 & 4 & 6 & 5 & 2 & 3 & 7 \\
+1 & 3 & 5 & 4 & 7 & 2 & 6
+\end{bmatrix} = \begin{bmatrix} x^0 \\ x^1 \\ x^2 \\ x^3 \end{bmatrix}.
+$$
+
+Then, we compute the code with
+$$m\cdot G_{sym}=c$$
+in other words, $G_{sym}$ transforms the 4-digit $m$ into the 7-digit codeword $c$.
+
+# Quantum RS Error Correction
