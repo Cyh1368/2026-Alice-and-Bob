@@ -21,7 +21,7 @@ G_{sym} = \begin{bmatrix}
 1 & 2 & 4 & 3 & 6 & 7 & 5 \\
 1 & 4 & 6 & 5 & 2 & 3 & 7 \\
 1 & 3 & 5 & 4 & 7 & 2 & 6
-\end{bmatrix} = \begin{bmatrix} x^0 \\ x^1 \\ x^2 \\ x^3 \end{bmatrix}.
+\end{bmatrix} = \begin{bmatrix} x^0 \\ x^1 \\ x^2 \\ x^3 \end{bmatrix}^T.
 $$
 
 Then, we compute the code with
